@@ -26,6 +26,18 @@ parameters:
     - '#^Parameter \#1 \$image of function imagesavealpha expects GdImage, resource given\.#'
     # # PHP 8.0 & Attribute
     - '#^Attribute class PHPUnit\\Framework\\Attributes\\DataProvider does not exist\.#'
+    ## PHPStan 2.x - type-check assertions on values already typed by their signature (correct test code)
+    -
+      identifier: staticMethod.alreadyNarrowedType
+      path: tests/*
+    ## PHPStan 2.x - @var hints on anonymous mock classes in tests
+    -
+      identifier: varTag.nativeType
+      path: tests/*
+    ## PHPStan 2.x - PHPMD @SuppressWarnings annotation parsed as a type
+    -
+      identifier: phpDoc.parseError
+      path: tests/*
 
   ## Remove after remove ArrayObject
   treatPhpDocTypesAsCertain: false

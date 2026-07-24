@@ -63,7 +63,7 @@ class ODPresentation implements ReaderInterface
     protected $oZip;
 
     /**
-     * @var array<string, array{alignment: null|Alignment, background: null, shadow: null|Shadow, fill: null|Fill, spacingAfter: null|int, spacingBefore: null|int, lineSpacingMode: null, lineSpacing: null, font: null, listStyle: null}>
+     * @var array<string, array{alignment: null|Alignment, background: null|BackgroundColor|Image, shadow: null|Shadow, fill: null|Fill, spacingAfter: null|int, spacingBefore: null|int, lineSpacingMode: null|string, lineSpacing: null|string, font: null|Font, listStyle: null|array<int, array<string, mixed>>}>
      */
     protected $arrayStyles = [];
 
@@ -662,7 +662,7 @@ class ODPresentation implements ReaderInterface
                     $oParagraph->setLineSpacingMode($this->arrayStyles[$keyStyle]['lineSpacingMode']);
                 }
                 if (!empty($this->arrayStyles[$keyStyle]['lineSpacing'])) {
-                    $oParagraph->setLineSpacing($this->arrayStyles[$keyStyle]['lineSpacing']);
+                    $oParagraph->setLineSpacing((int) $this->arrayStyles[$keyStyle]['lineSpacing']);
                 }
             }
         }
